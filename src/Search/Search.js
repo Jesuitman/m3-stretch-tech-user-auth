@@ -2,20 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card'; // Update the path as per your file structure
 
 function WikipediaSearch() {
-  const [searchInput, setSearchInput] = useState('');
-  const [results, setResults] = useState([]);
-  const [initialResults, setInitialResults] = useState([]);
-  const [page, setPage] = useState([]);
-  const [controversies, setControversies] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
+    const [results, setResults] = useState([]);
+    const [initialResults, setInitialResults] = useState([]);
+    const [page, setPage] = useState([]);
+    const [controversies, setControversies] = useState([]);
+    const [searching, setSearching] = useState(false);
+    const [searched, setSearched] = useState(false);
+    const [showNoControversies, setShowNoControversies] = useState(false);
+
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (searchInput.trim() !== '') {
-      displaySearchResults(searchInput);
+        setSearching(true)
+        setSearched(true)
+        await displaySearchResults(searchInput);
+        setSearching(false)
+    } else{
+        alert ("Please fill in the search bar with a term before you click search.")
     }
     setSearchInput('');
   };
@@ -120,6 +129,18 @@ function WikipediaSearch() {
 
   console.log("controversies: ", controversies);
 
+  useEffect(() => {
+    if (searched && controversies.length === 0) {
+      const timeout = setTimeout(() => {
+        setShowNoControversies(true);
+      }, 1000); // 2-second delay
+
+      return () => clearTimeout(timeout);
+    } else {
+      setShowNoControversies(false);
+    }
+  }, [searched, controversies]);
+
 
   return (
     <div>
@@ -135,6 +156,8 @@ function WikipediaSearch() {
       </form>
 
       <div id="resultsList">
+        {searching && <p>Searching...</p>}
+        {showNoControversies && <p>No controversies found!</p>}
         {controversies.length > 0 && (
           <>
             <h2>Controversies for {initialResults.title}</h2>
