@@ -18,7 +18,7 @@ describe('App Component', () => {
   });
 });
 
-describe('Wikipedia Search Component', () => {
+describe('Can search for a Controversy', () => {
   it('Searches for a term', () => {
     cy.visit('/');
     cy.get('input[type="text"]').type('SearchTerm{enter}');
@@ -47,6 +47,6 @@ describe('WikipediaPage Component', () => {
   });
 
   it('Saves controversy properly', () => {
-    cy.visit('/article/PageTitle'); 
+    cy.visit('/article/"PageTitle(Placeholder)"'); 
   });
 });
