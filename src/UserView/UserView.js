@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 
 const ControversyDisplay = ({ initialResults, controversies }) => {
   const [showFavorites, setShowFavorites] = useState(false);
-
+console.log(initialResults)
   const handleShowFavorites = () => {
     setShowFavorites(true);
   };
@@ -52,6 +52,12 @@ const ControversyDisplay = ({ initialResults, controversies }) => {
 };
 
 export default ControversyDisplay;
+
+ControversyDisplay.propTypes = {
+  initialResults: PropTypes.object.isRequired,
+  controversies: PropTypes.array.isRequired,
+};
+
 
 
 
