@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./WikipediaPage.css"
+import PropTypes from 'prop-types';
 
 const WikipediaPage = ({ pageTitle }) => {
     const [contents, setContents] = useState([]);
@@ -56,3 +57,7 @@ const WikipediaPage = ({ pageTitle }) => {
 };
 
 export default WikipediaPage;
+
+WikipediaPage.propTypes = {
+    pageTitle: PropTypes.string.isRequired,
+  };
