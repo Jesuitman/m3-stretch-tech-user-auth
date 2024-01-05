@@ -11,7 +11,7 @@ import useSearchResults from '../hooks/useSearchResults.js';
 function App() {
   const { isLoading } = useAuth0();
   
-  const randomSearchInputs = ['4chan', 'Titan (Submersible)', 'Billy Mitchell (gamer)', 'You Showed Me', 'Ezra Miller', 'Russel Brand', 'Bernie Madoff', 'Amy Winehouse']
+  const randomSearchInputs = ['4chan', 'Titan (Submersible)', 'Billy Mitchell (gamer)', 'You Showed Me', 'Ezra Miller', 'Russell Brand', 'Bernie Madoff', 'Amy Winehouse']
   const { initialResults, controversies, triggerSearch  } = useSearchResults();
   
   const randomSearch = () => {
