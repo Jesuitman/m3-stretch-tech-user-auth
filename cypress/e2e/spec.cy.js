@@ -4,6 +4,31 @@ describe('template spec', () => {
   })
 })
 
+describe('API Tests', () => {
+  it('Fetches and displays Wikipedia page contents', () => {
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?').as('fetchContents');
+    cy.visit('/'); 
+    cy.wait('@fetchContents').then(({ response }) => {
+      expect(response.statusCode).to.equal(200);
+    });
+    cy.contains('Loading...').should('not.exist');
+    cy.contains('An error occurred').should('not.exist'); 
+  });
+
+  it('Handles error when API fails', () => {
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 500,
+      body: 'Server Error',
+      delayMs: 200,
+    }).as('fetchError');
+    cy.visit('/'); 
+    cy.wait('@fetchError').then(({ response }) => {
+      expect(response.statusCode).to.equal(500);
+    cy.contains('An error occurred').should('exist');
+    });
+  });
+});
+
 describe('App Component', () => {
   it('Loads the app properly', () => {
     cy.visit('/'); 
@@ -47,6 +72,6 @@ describe('WikipediaPage Component', () => {
   });
 
   it('Saves controversy properly', () => {
-    cy.visit('/article/"PageTitle(Placeholder)"'); 
+    cy.visit('/'); 
   });
 });
