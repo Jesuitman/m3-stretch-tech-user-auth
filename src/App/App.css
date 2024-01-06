@@ -64,6 +64,15 @@ button:hover {
   color: inherit; 
 }
 
+.filter-buttons {
+  margin: 1rem 0; 
+  padding: 0.5rem; 
+}
+
+.filter-buttons button {
+  margin-right: 0.5rem; 
+}
+
 @media screen and (max-width: 500px) {
   h1 {
     font-size: 3rem;
