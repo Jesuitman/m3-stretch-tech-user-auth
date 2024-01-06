@@ -23,11 +23,13 @@ function WikipediaSearch({ saveControversy }) {
         {isAuthenticated && (
           <form onSubmit={handleFormSubmit}>
             <input
+              id="wikiSearch"
               type="text"
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
               autoComplete="off"
-              placeholder="Search on Wikipedia"
+              placeholder='Search Wikipedia'
+              aria-label="Search Wikipedia"
             />
             <button type="submit">Search</button>
           </form>
