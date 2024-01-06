@@ -5,7 +5,6 @@ const errorMessage = ({ errorMessage }) => {
     <div className="error-page">
       <h2>Error Encountered</h2>
       <p>{errorMessage}</p>
-      {/* Additional Error messages */}
     </div>
   );
 };
