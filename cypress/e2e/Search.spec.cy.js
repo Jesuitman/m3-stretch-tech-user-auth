@@ -36,22 +36,26 @@ describe('Should be able to search for a controversy', () => {
   
     it('Displays controversies for a search result', () => {
       cy.get('.card').should('be.visible');
-      cy.get('.result-name').should('contain', '');
+      cy.get('.result-name').should('contain', '4chan');
       cy.get('.results-list')
         .children()
         .first()
         .within(() => {
-          cy.contains('h2', '//fixture');
-          cy.contains('p', '//fixture');
-          cy.contains('button', '😡Save Controversy😡');
-          cy.contains('button', '🤬Save as favorite controversy🤬');
+            cy.get('.card-content').should('be.visible');
+            cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
+            cy.get('img').should('be.visible')
+            cy.get('h3').should('contain', 'Internet raids')
+            cy.contains('button', '😡Save Controversy😡');
+            cy.contains('button', '🤬Save as favorite controversy🤬');
         });
         cy.get('.results-list')
           .children()
           .last()
           .within(() => {
-            cy.contains('h2', '//fixture');
-            cy.contains('p', '//fixture');
+            cy.get('.card-content').should('be.visible');
+            cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
+            cy.get('img').should('be.visible')
+            cy.get('h3').should('contain', 'Internet raids')
             cy.contains('button', '😡Save Controversy😡');
             cy.contains('button', '🤬Save as favorite controversy🤬');
           });
