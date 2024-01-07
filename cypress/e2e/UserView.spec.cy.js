@@ -61,6 +61,8 @@ describe('UserView Component', () => {
     it('Should return to the main page on header click', () => {
       cy.get('.header-text').should('be.visible');
       cy.get('.header-text').click();
+      cy.get('input').should('be.visible')
+      cy.get('h2').should('be.visible')
     })
   });
 });
