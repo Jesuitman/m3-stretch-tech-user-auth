@@ -19,7 +19,7 @@ describe('Card Component', () => {
     });
   
     it('Handles show more/show less functionality', () => {
-  
+        //click to show article
     });
   });
   
