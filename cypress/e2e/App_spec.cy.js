@@ -30,3 +30,24 @@ describe('App spec', () => {
     
   });
 });
+
+//Login couldn't work because Cypress couldn't session 
+// describe('Logged in tests', () => {
+//   beforeEach(() => {
+//     cy.intercept('GET', '**/w/api.php?action=query&list=search**', { fixture: 'initialSearch.json' }).as('initialSearch');
+//     cy.intercept('GET', '**/w/api.php?action=parse&prop=sections**', { fixture: 'sectionsRequest.json' }).as('sectionsRequest');
+//     cy.intercept('GET', '**/w/api.php?action=parse&format=json**', { fixture: 'controversiesRequest.json' }).as('controversiesRequest');
+
+//     cy.visit('http://localhost:3000/');
+//     cy.wait('@initialSearch');
+//     cy.wait('@sectionsRequest');
+//     cy.wait('@controversiesRequest');
+//     cy.loginToAuth0('haderaid9@gmail.com', 'JZgyS@xJi9ej@V9');
+//   });
+
+  // it('should display logged in content', () => {
+  //   cy.get('#profile').should('be.visible');
+  //   cy.get('#profile').should('contain', 'Profile');
+  // });
+
+// });
