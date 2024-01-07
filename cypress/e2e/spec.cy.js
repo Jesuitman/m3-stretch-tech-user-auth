@@ -1,8 +1,9 @@
-//Need to login before testing
+// Need to login before testing
 describe('API Tests', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
-  })
+  });
+
   it('Fetches and displays Wikipedia page contents', () => {
     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
       statusCode: 200,
@@ -31,11 +32,16 @@ describe('API Tests', () => {
 describe('App Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
-  })
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 200,
+      fixture: 'sampleRandomCards',
+    }).as('fetchRandom');
+    cy.wait('@fetchRandom');
+  });
 
   it('Loads the app properly', () => {
     cy.get('.header-text').should('be.visible');
-    cy.get('.login-button').should('be.visible');
+    cy.get('.button__login').should('be.visible');
     cy.get('.random-headline').should('be.visible');
   });
 
@@ -53,12 +59,39 @@ describe('App Component', () => {
         cy.contains('button', '🤬Save as favorite controversy🤬');
       });
   });
+
+  //code from a cypress/auth0 tutorial
+  describe('Auth0', function () {
+    beforeEach(function () {
+      cy.task('db:seed');
+      cy.intercept('POST', '/graphql').as('createUserAccount');
+      cy.loginToAuth0(
+        Cypress.env('auth0_username'),
+        Cypress.env('auth0_password')
+      )
+      cy.visit('/');
+    })
+  
+    it('shows onboarding', function () {
+      cy.contains('Get Started').should('be.visible');
+    })
+  })
 });
 
 describe('Can search for a Controversy', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 200,
+      fixture: 'sampleRandomCards',
+    }).as('fetchRandom');
+    cy.wait('@fetchRandom');    
     //placeholder for login flow
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 200,
+      fixture: 'wikipediaApiResponse',
+    }).as('fetchContents');
+    cy.wait('@fetchContents');
   });
 
   it('Searches for a term, then clears input', () => {
@@ -94,6 +127,11 @@ describe('Can search for a Controversy', () => {
 describe('Card Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 200,
+      fixture: 'sampleRandomCards',
+    }).as('fetchRandom');
+    cy.wait('@fetchRandom'); 
   })
 
   it('Renders snippet properly', () => {
@@ -102,21 +140,26 @@ describe('Card Component', () => {
     cy.get('p').should('contain', '//fixture');
   });
 
-  it('Handles show more/show less functionality', () => {
+  // it('Handles show more/show less functionality', () => {
 
-  });
+  // });
 });
 
 describe('UserView Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
+      statusCode: 200,
+      fixture: 'sampleRandomCards',
+    }).as('fetchRandom');
+    cy.wait('@fetchRandom'); 
     //login flow placeholder
     cy.get('#profile').should('be.visible');
     cy.get('.favoriteButton').click();
     cy.get('.saveButton').click();
     cy.get('#profile').click();
     cy.visit('http://localhost:3000/Profile');
-  })
+  });
 
   it('Loads page content properly', () => {
     cy.get('.filter-buttons').should('be.visible');
@@ -130,15 +173,16 @@ describe('UserView Component', () => {
     cy.get('p').should('contain', '//fixture');
   });
 
-  it('Should show favorited cards', () => {
-    cy.get();
-  });
+  // it('Should show favorited cards', () => {
+  //   cy.get('');
+  // });
 
-  it('Should return to show all saved', () => {
-    cy.get();
-  });
+  // it('Should return to show all saved', () => {
+  //   cy.get('');
+  // });
 
-  it('Should return to the main page on header click', () => {
-    cy.get();
-  })
+  // it('Should return to the main page on header click', () => {
+  //   cy.get('');
+  //   cy.get('').click();
+  // })
 });
