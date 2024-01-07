@@ -30,7 +30,7 @@ function WikipediaSearch({ saveControversy, isAuthenticated }) {
               placeholder="Search on Wikipedia"
               aria-label="Search Wikipedia"
             />
-            <button type="submit">Search</button>
+            <button id="search-button"type="submit">Search</button>
           </form>
         )}
         {controversies[0] && <h2 className='result-name'>Controversies for {initialResults.title}</h2>}
