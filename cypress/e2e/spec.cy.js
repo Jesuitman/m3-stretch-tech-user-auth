@@ -40,15 +40,15 @@ describe('App Component', () => {
   });
 
   it('Displays random controversies', () => {
-    cy.get('.result-name').should('contain', '');
+    cy.get('.result-name').should('contain', '//fixture');
     cy.get('.random-headline').should('contain', 'Random Controversy');
     cy.get('.card').should('be.visible');
     cy.get('.card')
       .children()
       .first()
       .within(() => {
-        cy.contains('h2', '');
-        cy.contains('p', '');
+        cy.contains('h2', '//fixture');
+        cy.contains('p', '//fixture');
         cy.contains('button', '😡Save Controversy😡');
         cy.contains('button', '🤬Save as favorite controversy🤬');
       });
@@ -64,7 +64,7 @@ describe('Can search for a Controversy', () => {
   it('Searches for a term, then clears input', () => {
     cy.get('input[type="text"]').should('be.visible');
     cy.get('input[type="text"]').type('SearchTerm{enter}');
-    cy.get('input[type="text"]').should('have.text', '');
+    cy.get('input[type="text"]').should('have.text', 'SearchTerm');
   });
 
   it('Displays controversies for a search result', () => {
@@ -74,8 +74,8 @@ describe('Can search for a Controversy', () => {
       .children()
       .first()
       .within(() => {
-        cy.contains('h2', '');
-        cy.contains('p', '');
+        cy.contains('h2', '//fixture');
+        cy.contains('p', '//fixture');
         cy.contains('button', '😡Save Controversy😡');
         cy.contains('button', '🤬Save as favorite controversy🤬');
       });
@@ -83,8 +83,8 @@ describe('Can search for a Controversy', () => {
         .children()
         .last()
         .within(() => {
-          cy.contains('h2', '');
-          cy.contains('p', '');
+          cy.contains('h2', '//fixture');
+          cy.contains('p', '//fixture');
           cy.contains('button', '😡Save Controversy😡');
           cy.contains('button', '🤬Save as favorite controversy🤬');
         });
@@ -98,8 +98,8 @@ describe('Card Component', () => {
 
   it('Renders snippet properly', () => {
     cy.get('.card-content').should('be.visible');
-    cy.get('h2').should('contain', '');
-    cy.get('p').should('contain', '');
+    cy.get('h2').should('contain', '//fixture');
+    cy.get('p').should('contain', '//fixture');
   });
 
   it('Handles show more/show less functionality', () => {
@@ -111,17 +111,34 @@ describe('UserView Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
     //login flow placeholder
+    cy.get('#profile').should('be.visible');
+    cy.get('.favoriteButton').click();
+    cy.get('.saveButton').click();
+    cy.get('#profile').click();
+    cy.visit('http://localhost:3000/Profile');
   })
 
   it('Loads page content properly', () => {
-    cy.get('#profile').should('be.visible');
-    cy.get('#profile').click();
-    cy.visit('http://localhost:3000/Profile'); 
+    cy.get('.filter-buttons').should('be.visible');
     cy.get('.filter-buttons').should('have.descendants', 'button');
     // cy.get('.article').should('be.visible');
   });
 
-  it('Saves controversy properly', () => {
- 
+  it('Shows all saved controversies on profile page load', () => {
+    cy.get('.card-content').should('be.visible');
+    cy.get('h2').should('contain', '//fixture');
+    cy.get('p').should('contain', '//fixture');
   });
+
+  it('Should show favorited cards', () => {
+    cy.get();
+  });
+
+  it('Should return to show all saved', () => {
+    cy.get();
+  });
+
+  it('Should return to the main page on header click', () => {
+    cy.get();
+  })
 });
