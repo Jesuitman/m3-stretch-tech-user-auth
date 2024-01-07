@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import './Search.css';
 import useSearchResults from '../hooks/useSearchResults';
 
-function WikipediaSearch({ saveControversy }) {
+function WikipediaSearch({ saveControversy, isAuthenticated }) {
   const [searchInput, setSearchInput] = useState('');
   const { initialResults, controversies, triggerSearch } = useSearchResults();
   const handleFormSubmit = (e) => {
@@ -15,7 +15,7 @@ function WikipediaSearch({ saveControversy }) {
     setSearchInput('');
   };
 
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
 
   return (
     <main>
