@@ -1,18 +1,14 @@
 describe('Can search for a Controversy', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000/');
-      cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
-        statusCode: 200,
-        fixture: 'sampleRandomCards',
-      }).as('fetchRandom');
-      cy.wait('@fetchRandom');    
-      //placeholder for login flow
-      cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?', {
-        statusCode: 200,
-        fixture: 'wikipediaApiResponse',
-      }).as('fetchContents');
-      cy.wait('@fetchContents');
-    });
+        cy.intercept('GET', '**/w/api.php?action=query&list=search**', { fixture: 'initialSearch.json' }).as('initialSearch');
+        cy.intercept('GET', '**/w/api.php?action=parse&prop=sections**', { fixture: 'sectionsRequest.json' }).as('sectionsRequest');
+        cy.intercept('GET', '**/w/api.php?action=parse&format=json**', { fixture: 'controversiesRequest.json' }).as('controversiesRequest');
+    
+        cy.visit('http://localhost:3000/');
+        cy.wait('@initialSearch');
+        cy.wait('@sectionsRequest');
+        cy.wait('@controversiesRequest');
+      });
   
     it('Searches for a term, then clears input', () => {
       cy.get('input[type="text"]').should('be.visible');
