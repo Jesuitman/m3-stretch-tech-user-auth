@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../Card/Card';
 import PropTypes from "prop-types";
+import './UserView.css';
 
 const Profile = ({ savedControversies }) => {
   const [showFavorites, setShowFavorites] = useState(false);
@@ -24,7 +25,7 @@ const Profile = ({ savedControversies }) => {
         <button onClick={handleShowFavorites}>Show Favorites</button>
       </div>
       <h2 className='random-headline'>Saved Controversies</h2>
-      <div>
+      <div className='results-list'>
         {filteredControversies.map((controversy, index) => (
           <Card
             key={index}
