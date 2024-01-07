@@ -74,7 +74,7 @@ function App() {
           )}
         </header>
         <Routes>
-        <Route path='/' element={<WikipediaSearch isLoggedIn={isAuthenticated} savedControversies={savedControversies} saveControversy={saveControversy} />} />
+        <Route path='/' element={<WikipediaSearch isAuthenticated={isAuthenticated} savedControversies={savedControversies} saveControversy={saveControversy} />} />
           <Route path='/main' element={<Navigate to='/' />} />
           <Route path='/profile' element={<Profile savedControversies={savedControversies} />} />
           <Route path="article/:id" element={<WikipediaSearch />} />
