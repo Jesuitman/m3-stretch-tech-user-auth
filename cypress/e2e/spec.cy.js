@@ -140,9 +140,9 @@ describe('Card Component', () => {
     cy.get('p').should('contain', '//fixture');
   });
 
-  // it('Handles show more/show less functionality', () => {
+  it('Handles show more/show less functionality', () => {
 
-  // });
+  });
 });
 
 describe('UserView Component', () => {
@@ -173,16 +173,16 @@ describe('UserView Component', () => {
     cy.get('p').should('contain', '//fixture');
   });
 
-  // it('Should show favorited cards', () => {
-  //   cy.get('');
-  // });
+  it('Should show favorited cards', () => {
+    cy.get('');
+  });
 
-  // it('Should return to show all saved', () => {
-  //   cy.get('');
-  // });
+  it('Should return to show all saved', () => {
+    cy.get('');
+  });
 
-  // it('Should return to the main page on header click', () => {
-  //   cy.get('');
-  //   cy.get('').click();
-  // })
+  it('Should return to the main page on header click', () => {
+    cy.get('');
+    cy.get('').click();
+  })
 });
