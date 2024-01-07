@@ -36,7 +36,6 @@ describe('UserView Component', () => {
   
     it('Shows all saved controversies on profile page load', () => {
       cy.get('.card-content').should('be.visible');
-      cy.get('.card-content').should('be.visible');
       cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
       cy.get('img').should('be.visible')
       cy.get('h3').should('contain', 'Internet raids')
@@ -44,7 +43,6 @@ describe('UserView Component', () => {
   
     it('Should show favorited cards', () => {
       cy.get('.show-favorites').click()
-      cy.get('.card-content').should('be.visible');
       cy.get('.card-content').should('be.visible');
       cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
       cy.get('img').should('be.visible')
@@ -54,7 +52,6 @@ describe('UserView Component', () => {
   
     it('Should return to show all saved', () => {
       cy.get('.show-all').click();
-      cy.get('.card-content').should('be.visible');
       cy.get('.card-content').should('be.visible');
       cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
       cy.get('img').should('be.visible')
