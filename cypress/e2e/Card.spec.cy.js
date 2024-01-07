@@ -18,8 +18,10 @@ describe('Card Component', () => {
 
   it('Handles show more/show less functionality', () => {
     cy.get('.card-content').should('be.visible');
-    cy.get('.card-content').first().click();
+    cy.get('h3').first().click();
     cy.get('p').should('contain', 'According to The Washington Post, \"the site\'s users have managed to pull off some of the highest-profile collective actions in the history of the Internet.\"[1]');
+    cy.get('p').should('have.length', '36');
+    cy.get('h3').first().click();
+    cy.get('p').should('have.length', '10');
   });
 });
-  
