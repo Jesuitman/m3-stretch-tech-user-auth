@@ -9,11 +9,29 @@ describe('Can search for a Controversy', () => {
         cy.wait('@sectionsRequest');
         cy.wait('@controversiesRequest');
       });
-  
+      
+      it('Can login', () => {
+        cy.get('.button__login').should('be.visible')
+        cy.get('.button__login').click()
+        cy.get('#profile').should('be.visible')
+        cy.get('input').should('be.visible')
+
+    })
+describe('Should be able to search for a controversy', () => {
+        beforeEach(() => {
+          cy.get('.button__login').click()
+          cy.get('.favoriteButton').first().click();
+          cy.get('.saveButton').last().click();
+        //   cy.visit('http://localhost:3000/Profile');
+        }); 
+    
     it('Searches for a term, then clears input', () => {
-      cy.get('input[type="text"]').should('be.visible');
-      cy.get('input[type="text"]').type('SearchTerm{enter}');
-      cy.get('input[type="text"]').should('have.text', 'SearchTerm');
+        cy.get('input[type="text"]').should('be.visible');
+        cy.get('input[type="text"]').type('Rush Limbaugh');
+        cy.get('input[type="text"]').should('have.value', 'Rush Limbaugh')
+      cy.get('#search-button').should('be.visible');
+      cy.get('#search-button').click()
+      cy.get('input[type="text"]').should('have.value', '')
     });
   
     it('Displays controversies for a search result', () => {
@@ -39,3 +57,4 @@ describe('Can search for a Controversy', () => {
           });
     });
   });
+})
