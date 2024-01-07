@@ -15,7 +15,6 @@ describe('Card Component', () => {
       cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
       cy.get('img').should('be.visible')
       cy.get('h3').should('contain', 'Internet raids')
-    //   cy.get('figcaption').should('contains', 'See also: Anonymous (hacker group) § 4chan raids (2003–2007), and Sarah Palin email hack')
     });
   
     it('Handles show more/show less functionality', () => {
