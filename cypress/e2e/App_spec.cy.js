@@ -15,14 +15,26 @@ describe('App spec', () => {
       cy.get('.logo-link').should('be.visible');
       cy.get('.button__login').should('be.visible');
       cy.get('.random-headline').should('be.visible');
-      cy.get('.result-name').should('exist');
+      cy.get('.result-name').should('contain', '4chan');
       cy.get('.random-headline').should('contain', 'Random Controversy');
       cy.get('.card').should('be.visible');
       cy.get('.card')
         .children()
         .first()
         .within(() => {
-          cy.contains('p');
+          cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
+          cy.get('img').should('be.visible');
+          cy.get('h3').should('contain', 'Internet raids');
+          cy.contains('button', '😡Save Controversy😡');
+          cy.contains('button', '🤬Save as favorite controversy🤬');
+        });
+        cy.get('.card')
+        .children()
+        .last()
+        .within(() => {
+          cy.get('h2').should('contain', 'Controversies and harassment incidents[edit]');
+          cy.get('img').should('be.visible');
+          cy.get('h3').should('contain', 'Internet raids');
           cy.contains('button', '😡Save Controversy😡');
           cy.contains('button', '🤬Save as favorite controversy🤬');
         });
