@@ -51,7 +51,7 @@ function App() {
           <Link to="/" className="logo-link"> 
             <h1 className='header-text'>H8rAid!</h1>
           </Link>
-          {isAuthenticated && <button onClick={() => navigate("/profile")}>Profile</button>}
+          {isAuthenticated && <button id='profile' onClick={() => navigate("/profile")}>Profile</button>}
           <NavBarButtons />
         </header>
         <Routes>
@@ -63,7 +63,7 @@ function App() {
         {showRandomControversy && ( 
         <section className='random-view'>
           <h2 className='random-headline'>Random Controversy</h2>
-          {controversies[0] && <h2 id='resultName'>{initialResults.title}</h2>}
+          {controversies[0] && <h2 className='result-name'>{initialResults.title}</h2>}
           <section className='results-list'>
           {controversies.map((item, i) => (
             <Card
